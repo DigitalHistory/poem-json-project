@@ -70,18 +70,30 @@ function tokenizeLine (l, tag="line") {
  */
 function tokenizeStanza(stanza) {
   let lines = [];
-  console.log(stanza);
+  //console.log(stanza);
   for (let l of stanza) {
     //console.log(a);
     lines.push(tokenizeLine(l))
   }
-  return lines
+  return {type: "stanza", class:"", content: lines}
 }
 
+function tokenizePoem (file) {
+  const poemText = fs.readFileSync(file, 'utf8');
+  const linesText = poemText.split(/\n/)
+  console.log(linesText);
+  let poem = []
+  let titleText = linesText.shift(),
+      authorText = linesText.shift()
+  console.log(titleText,authorText);
+  let title = tokenizeLine(titleText, "h1"),
+      author = tokenizeLine(authorText, "h2"),
+      stanzas = createStanzas(linesText);
+  return [title,author,...stanzas]
+}
+// const poemStanzas = createStanzas(poemFile)
 
-
-const poemStanzas = createStanzas(poemFile)
-const poemObj = {stanzas: poemStanzas}
+// const poemObj = {stanzas: poemStanzas}
 
 // write to poem.js
-fs.writeFileSync('poem.js','let poem=' + stringify(poemObj))
+fs.writeFileSync('poem.js','let poem=' + stringify(tokenizePoem(poemFile)))
