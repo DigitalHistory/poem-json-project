@@ -6,7 +6,7 @@ Repo contains both student and instructor files for Assignment 1 of DH235.
 
 - Run `npm install` to install dependencies
 - replace `poem.txt` with whatever poem you want to tokenize
-- run `tokenizer.js` to generate a js file with a single global variable `poem` whihc contains an array of hierarchical elements to be tranformed into nodes
+- run `tokenizer.js` to generate a js file with a single global variable `poem` which contains an array of hierarchical elements to be tranformed into html nodes
 
 ## For Students
 
