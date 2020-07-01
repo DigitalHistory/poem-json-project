@@ -36,28 +36,30 @@ function createStanzas(poem) {
 /**
  * fully tokenize an array of string elements representing a line of poetry
  * Still not sure whether to preserve whitespace markers in the text.
- * Punctuation marks should be preserved as individual tokens, the RegEx mau not be working.
- * @param {} l
- * @returns {} 
+ * Punctuation marks should be preserved as individual tokens,
+ * but the RegEx may not be working.
+ * @param {string} l
+ * @returns {array} array of objects  
  */
-function tokenizeLine (l) {
+function tokenizeLine (l, tag="line") {
   let a = []
-  const raw = l.split(/(\s+)|(\,|\.|\;\!)/)
+  const raw = l.split(/(\s+)|(\,|\.|\;|\!)/)
   // console.log(raw);
   for (let e of raw) {
     if (typeof(e) !== 'undefined') {
       let newel = {type: "word", content: e, class: "", meta: ""}
       if (e.match(/^\s/)) {
-        if (e.length > 1) {a.push({type: "indent", ...newel})}
+        if (e.length > 1) {a.push({...newel, type: "indent"})}
         //a.push({type: "space", content: e})
       } else if (e.match(/^(\,|\;|\.|\!)/)) {
-        a.push({type: "punctuation", ...newel})
+        //console.log(e, "e is pucntuation!");
+        a.push({...newel, type: "punctuation"})
       } else if (e.length > 0){
-        a.push({type: "word", ...newel})
+        a.push(newel)
       }
     }
   }
-  return a
+  return {type: tag, class:"", content: a }
 }
 
 
