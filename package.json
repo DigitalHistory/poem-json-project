@@ -1,0 +1,25 @@
+{
+  "name": "poem-tokenizer",
+  "version": "0.0.1",
+  "description": "Experiment using JSON instead of XML for teaching TEI-like tokenization",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titaniumbones/xslt-example.git"
+  },
+  "author": "Matt Price",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/titaniumbones/xslt-example/issues"
+  },
+  "homepage": "https://github.com/titaniumbones/xslt-example#readme",
+  "dependencies": {
+    "json-stringify-pretty-compact": "^2.0.0"
+  }
+}
