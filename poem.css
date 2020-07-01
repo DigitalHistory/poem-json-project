@@ -1,0 +1,39 @@
+body {
+    counter-reset: poem;                       /* Set a counter named 'section', and its initial value is 0. */
+}
+
+stanza {
+    border: black solid 2px;    /*add a border around stanzas*/
+    margin: 5px;                /*with margins so that borders don't run into each other! */
+    display: block;             /*this is important! display on its own line*/
+}
+
+line {
+    display: block;             /*this is important! display on its own line*/
+}
+
+/* since there are no actual spaces in the text,add a margin to make it readable */
+/* if you remove it, the words will run together.   */
+word {
+    margin-left: .222em;
+    color: green;
+}
+
+/* consider whether you want to color/display your punctuation */
+punctuation {
+
+}
+
+indent {
+    white-space: pre-wrap;      /*preserve whitespace of indentations*/
+}
+
+
+/* add a counter to each line.  if you don't like it, delete the `content` line */
+line::before {
+    counter-increment: poem;
+    /* background-color: magenta; */
+    content: counter(poem);
+    background-color: #DDD;
+}
+
