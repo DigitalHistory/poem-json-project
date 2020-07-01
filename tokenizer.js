@@ -12,17 +12,17 @@ const  poemFile = './poem.txt'
  * @param {string} poem
  * @returns {array} array of tokenized stanzas
  */
-function createStanzas(poem) {
-  const poemText = fs.readFileSync(poem, 'utf8');
-  const linesText = poemText.split(/\n/)
+function createStanzas(linesText) {
   let stanzas = []
   let lastIndex = 0
   for (let i = 0; i < linesText.length; i++) {
     //console.log(i, linesText[i], linesText[i].length);
     //console.log(lastIndex);
     if (linesText[i].length <= 0) {
-      newStanza = linesText.slice(lastIndex , i)
-      stanzas.push(tokenizeStanza(newStanza))
+      const newStanza = linesText.slice(lastIndex , i)
+      //console.log("stanza >o ?", newStanza);
+      if (newStanza.length > 0)  {
+        stanzas.push(tokenizeStanza(newStanza)) } else console.log("empty stanza");
       lastIndex = i + 1
     }
   }
