@@ -17,15 +17,17 @@ line {
 word {
     margin-left: .222em;
     color: green;
+    display: inline;            /*Important!! Don't display on own line*/
 }
 
 /* consider whether you want to color/display your punctuation */
 punctuation {
-
+    display: inline;
 }
 
 indent {
     white-space: pre-wrap;      /*preserve whitespace of indentations*/
+    display: inline;
 }
 
 
@@ -34,6 +36,22 @@ line::before {
     counter-increment: poem;
     /* background-color: magenta; */
     content: counter(poem);
+    width: 2em;
     background-color: #DDD;
 }
 
+
+.death {
+    color: #991111;
+    background-color: rgba(4,4,4,0.3);
+    font-weight:700;
+}
+
+.wealth {
+    color: gold;
+    font-style: italic;
+}
+
+.prayer {
+    background-color: magenta;
+}
