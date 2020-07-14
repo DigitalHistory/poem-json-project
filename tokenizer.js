@@ -2,7 +2,7 @@ const fsp = require('fs').promise,
       fs = require('fs')
 const stringify = require("json-stringify-pretty-compact");
 
-const  poemFile = './poem.txt'
+const  poemFile = './al-kolera.txt'
 //console.log(linesText);
 
 
