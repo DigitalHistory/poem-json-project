@@ -1,0 +1,10 @@
+main {
+    display: grid;
+    grid-template-areas: "top top" "in out";
+    height: 100vh;
+    grid-template-rows:  10vh 1fr;
+}
+
+main button {
+    grid-area: top;
+}
