@@ -7,26 +7,32 @@ function addTooltip (text, target) {
 }
 
 function parseInlineCollection (collection,target) {
-  
-  for (let e of collection) {
-    let newInline = document.createElement(e.type);
-    e.class && newInline.classList.add(...e.class.split(" "))
-    if (Array.isArray(e.content)) {
-      parseInlineCollection(e.content, newInline)
-    } else {
-      newInline.textContent = e.content;
-    }
-    if (e.meta) {
-      addTooltip (e.meta, newInline)
-    }
-    target.appendChild(newInline);
-  }   
+  console.log(collection);
+  if (Array.isArray (collection)) {
+    collection.forEach (e =>parseInlineCollection(e, target))
+  } else {
+  const {content, meta, type } = collection
+  let newInline = document.createElement(type);
+  collection.class && newInline.classList.add(...collection.class.split(" "));
+  meta && addTooltip (meta, newInline);
+  if (Array.isArray(content)) {
+    content.forEach (e => parseInlineCollection(e, newInline))
+    
+  } else {
+    newInline.textContent = content;
+  }
+  target.appendChild(newInline);
+  }
 }
+
 
 const target = document.querySelector("#poem")
 //let newDiv =  document.createElement
 
-parseInlineCollection(poem, target)
+parseInlineCollection(poem.title, document.querySelector("#title"))
+parseInlineCollection(poem.author, document.querySelector("#author"))
+parseInlineCollection(poem.stanzas, document.querySelector("#poem article"))
+//parseInlineCollection(poem, target)
 
 // for (const s of poem.stanzas) {
 //   if (s.length > 0) {

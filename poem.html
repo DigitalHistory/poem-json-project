@@ -11,7 +11,13 @@
     </head>
     <body>
         <!-- this empty element will be filled by the script that is called in the following element -->
-        <div id="poem"></div>
+        <main id="poem">
+            <header id="metadata">
+                <div id="title"></div>
+                <div id="author"></div>
+            </header>
+            <article></article>
+        </main>
         <!-- magic: generate the HTML structure from your representation of the poem -->
         <script src="./poem-build.js"></script>
     </body>

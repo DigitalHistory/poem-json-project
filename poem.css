@@ -4,7 +4,7 @@ body {
 
 stanza {
     border: black solid 2px;    /*add a border around stanzas*/
-    margin: 5px;                /*with margins so that borders don't run into each other! */
+    margin: 50px;                /*with margins so that borders don't run into each other! */
     display: block;             /*this is important! display on its own line*/
 }
 
@@ -16,13 +16,20 @@ line {
 /* if you remove it, the words will run together.   */
 word {
     margin-left: .222em;
-    color: green;
+    /* color: green; */
     display: inline;            /*Important!! Don't display on own line*/
 }
 
 /* consider whether you want to color/display your punctuation */
 punctuation {
-    display: inline;
+    /* visibility: hidden; */
+    /* width: 0px; */
+}
+
+punctuation::after {
+
+    visibility: visible;
+    /* content: "!" */
 }
 
 indent {
@@ -35,11 +42,42 @@ indent {
 line::before {
     counter-increment: poem;
     /* background-color: magenta; */
-    content: counter(poem);
+    /* content: counter(poem); */
     width: 2em;
     background-color: #DDD;
 }
 
+/* --------- class rules ------------ */
+
+line {
+    /* visibility: hidden; */
+    display: flex;
+    /* flex-direction: row-reverse; */
+}
+
+line.show {
+    visibility: visible;
+    color: #112505;
+    background-color: grey;
+    font-weight: 100;
+    font-style: italic;
+
+}
+
+line {
+    /* transform:rotateY(180deg); */
+    transform: scaleX
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}
+/* line * {
+    float: right;
+
+} */
+/* 
+.time {display: block;
+    font-weight: bold;}
+.hide {visibility: hidden;}
 
 .death {
     color: #991111;
@@ -54,4 +92,4 @@ line::before {
 
 .prayer {
     background-color: magenta;
-}
+} */
