@@ -1,8 +1,32 @@
-const fsp = require('fs').promise,
-      fs = require('fs')
+#!/usr/bin/env node
+
+// process.argv.forEach((index,val) => {
+//   console.log(index,val);
+// })
+// const optionDefinitions = [
+//   { name: 'verbose', alias: 'v', type: Boolean },
+//   { name: 'src', type: String, multiple: true, defaultOption: true },
+//   { name: 'timeout', alias: 't', type: Number }
+// ]
+// const commandLineArgs = require('command-line-args')
+// const options = commandLineArgs(optionDefinitions)
+
+// console.log(options);
+const {argv} = require('yargs');
+const path = require('path'),
+      fs = require("fs")
+
+const fsp = require('fs').promises
+
 const stringify = require("json-stringify-pretty-compact");
 
-const  poemFile = './al-kolera.txt'
+let poemFile = argv._[0],
+    baseName = poemFile ? path.parse(poemFile).name : null,
+outFile = baseName ? baseName + ".js" : null
+    
+// const  poemFile = argv.i ? argv.i :  './al-kolera.txt',
+//       outFile = argv.o ? argv.o : './al-kolera.js'
+
 //console.log(linesText);
 
 
@@ -91,9 +115,22 @@ function tokenizePoem (file) {
       stanzas = createStanzas(linesText);
   return [title,author,...stanzas]
 }
+
+
+async function rewriteHtmlFile (poemName) {
+  let html = await fsp.readFile("poem.html", 'utf-8'),
+      newHtml = html.replace(/poem.js/g, `${poemName}.js`)
+  return await fsp.writeFile (`${poemName}.html`, newHtml)
+}
 // const poemStanzas = createStanzas(poemFile)
 
 // const poemObj = {stanzas: poemStanzas}
 
 // write to poem.js
-fs.writeFileSync('poem.js','let poem=' + stringify(tokenizePoem(poemFile)))
+if (fs.existsSync(poemFile)) {
+  fs.writeFileSync(outFile,'let poem=' + stringify(tokenizePoem(poemFile)));
+  rewriteHtmlFile(baseName)
+} else {
+  console.log(`unable to find poem file ${poemFile ? poemFile : "(you didn't provide a poem file)"}`);
+}
+
