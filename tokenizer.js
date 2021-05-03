@@ -83,7 +83,7 @@ function tokenizeLine (l, tag="line") {
       }
     }
   }
-  return {type: tag, class:"", content: a }
+  return {type: tag, class:"", original: l, content: a }
 }
 
 
