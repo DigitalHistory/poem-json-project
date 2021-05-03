@@ -18,7 +18,7 @@ const isObj = function (value) {
 }
 const getOwnEnumPropSymbols = function (object) {
   return Object
-      .getOwnPropertySymbols(object)
+    .getOwnPropertySymbols(object)
     .filter((keySymbol) => Object.prototype.propertyIsEnumerable.call(object, keySymbol))}
 //require('get-own-enumerable-property-symbols').default;
 
@@ -168,10 +168,10 @@ function stringify(passedObj, options) {
   ).slice(2, -3);
   maxLength =
     indent === ""
-      ? Infinity
-      : options.maxLength === undefined
-      ? 80
-      : options.maxLength;
+    ? Infinity
+    : options.maxLength === undefined
+    ? 80
+    : options.maxLength;
   replacer = options.replacer;
 
   return (function _stringify(obj, currentIndent, reserved) {
