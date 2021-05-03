@@ -333,21 +333,26 @@ function tokenizePoem (el) {
   let poemText = el.value
   const linesText = poemText.split(/\n/)
   console.log(linesText);
-  let titleText = linesText.shift(),
-      authorText = linesText.shift()
-  console.log(titleText,authorText);
-  let title = tokenizeLine(titleText, "h1"),
-      author = tokenizeLine(authorText, "h2"),
-      stanzas = createStanzas(linesText);
-  return {title: title, author: author, stanzas: stanzas}
+  if ( linesText.length > 3 ) {
+    let titleText = linesText.shift(),
+        authorText = linesText.shift()
+    console.log(titleText,authorText);
+    
+    let title = tokenizeLine(titleText, "h1"),
+        author = tokenizeLine(authorText, "h2"),
+        stanzas = createStanzas(linesText);
+    return {title: title, author: author, stanzas: stanzas}
+  } else {
+    return null
+  }
 }
 
 function displayPoemJs (el) {
   let value = tokenizePoem(el),
       code = document.querySelector("pre#jsonoutput code"),
       parsed =  stringifyObject(value, {indent: '  ', inlineCharacterLimit: 80}).replace(/meta: ''/g, "meta: ``");// stringify(value, {maxLength: 80, indent: 2});
-  
-  code.textContent = `let poem = ${parsed};`;
+  console.log(value);
+  value ?  code.textContent = `let poem = ${parsed};` : code.textContent = `Please enter a full poem or parsing cannot succeed.` 
   
 }
 // const poemStanzas = createStanzas(poemFile)
