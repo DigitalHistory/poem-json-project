@@ -18,11 +18,12 @@ const path = require('path'),
 
 const fsp = require('fs').promises
 
-const stringify = require("json-stringify-pretty-compact");
+//const stringify = require("json-stringify-pretty-compact");
+const stringify = require("stringify-object");
 
 let poemFile = argv._[0],
     baseName = poemFile ? path.parse(poemFile).name : null,
-outFile = baseName ? baseName + ".js" : null
+    outFile = baseName ? baseName + ".js" : null
     
 // const  poemFile = argv.i ? argv.i :  './al-kolera.txt',
 //       outFile = argv.o ? argv.o : './al-kolera.js'
@@ -106,16 +107,19 @@ function tokenizePoem (file) {
   const poemText = fs.readFileSync(file, 'utf8');
   const linesText = poemText.split(/\n/)
   console.log(linesText);
-  let poem = []
-  let titleText = linesText.shift(),
-      authorText = linesText.shift()
-  console.log(titleText,authorText);
-  let title = tokenizeLine(titleText, "h1"),
-      author = tokenizeLine(authorText, "h2"),
-      stanzas = createStanzas(linesText);
-  return [title,author,...stanzas]
+  if ( linesText.length > 3 ) {
+    let titleText = linesText.shift(),
+        authorText = linesText.shift()
+    console.log(titleText,authorText);
+    
+    let title = tokenizeLine(titleText, "h1"),
+        author = tokenizeLine(authorText, "h2"),
+        stanzas = createStanzas(linesText);
+    return {title: title, author: author, stanzas: stanzas}
+  } else {
+    return null
+  }
 }
-
 
 async function rewriteHtmlFile (poemName) {
   let html = await fsp.readFile("poem.html", 'utf-8'),
@@ -127,9 +131,11 @@ async function rewriteHtmlFile (poemName) {
 // const poemObj = {stanzas: poemStanzas}
 
 // write to poem.js
+let options = {indent: '  ', inlineCharacterLimit: 80},
+    parsedPoem = stringify(tokenizePoem(poemFile),options).replace(/meta: ''/g, "meta: ``")
 if (fs.existsSync(poemFile)) {
-  fs.writeFileSync(outFile,'let poem=' + stringify(tokenizePoem(poemFile)));
-  rewriteHtmlFile(baseName)
+  fs.writeFileSync(outFile,'let poem=' +  parsedPoem);
+  //rewriteHtmlFile(baseName)
 } else {
   console.log(`unable to find poem file ${poemFile ? poemFile : "(you didn't provide a poem file)"}`);
 }
