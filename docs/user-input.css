@@ -1,10 +1,39 @@
+* {
+box-sizing: border-box;
+}
+
 main {
     display: grid;
     grid-template-areas: "top top" "in out";
     height: 100vh;
-    grid-template-rows:  10vh 1fr;
+    grid-template-rows:  20vh 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
 }
 
-main button {
+
+main header {
     grid-area: top;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
+
+main header p {
+    font-size: 1.2em;
+}
+
+main header button {
+    font-size: 1.6em;
+    background-color: #559955;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+main pre, main textarea {
+    border: 1px solid black;
+    margin-top: 0px;
+}
+
+
