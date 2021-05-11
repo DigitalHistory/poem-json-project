@@ -27,7 +27,6 @@ punctuation {
 }
 
 punctuation::after {
-
     visibility: visible;
     /* content: "!" */
 }
@@ -38,11 +37,10 @@ indent {
 }
 
 
-/* add a counter to each line.  if you don't like it, delete the `content` line */
+/* add a counter to each line.  if you don't like it, delete or comment the `content` line */
 line::before {
     counter-increment: poem;
-    /* background-color: magenta; */
-    /* content: counter(poem); */
+    content: counter(poem);
     width: 2em;
     background-color: #DDD;
 }
@@ -52,7 +50,9 @@ line::before {
 line {
     /* visibility: hidden; */
     display: flex;
+    /* uncomment the next two lines to display text backwards */
     /* flex-direction: row-reverse; */
+    /* justify-content: left */
 }
 
 line.show {
@@ -63,17 +63,11 @@ line.show {
     font-style: italic;
 
 }
-
+/* Another way to do the deformation */
 line {
-    /* transform:rotateY(180deg); */
-    transform: scaleX
-    unicode-bidi:bidi-override;
-    direction:rtl;
+    /* direction:rtl; */
 }
-/* line * {
-    float: right;
 
-} */
 /* 
 .time {display: block;
     font-weight: bold;}
