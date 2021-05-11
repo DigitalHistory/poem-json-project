@@ -12,19 +12,21 @@
 // const options = commandLineArgs(optionDefinitions)
 
 // console.log(options);
-const {argv} = require('yargs');
+const argv = require('yargs')(process.argv.slice(2)).argv;
 const path = require('path'),
       fs = require("fs")
 
 const fsp = require('fs').promises
 
+console.log('YARGS', argv);
 //const stringify = require("json-stringify-pretty-compact");
 const stringify = require("stringify-object");
 
 let poemFile = argv._[0],
     baseName = poemFile ? path.parse(poemFile).name : null,
-    outFile = baseName ? baseName + ".js" : null
-    
+    outFile = (argv._.length > 1 && baseName) ? path.join(argv._[1], baseName + '.js')  : ( baseName ? baseName + ".js"  : null) 
+
+
 // const  poemFile = argv.i ? argv.i :  './al-kolera.txt',
 //       outFile = argv.o ? argv.o : './al-kolera.js'
 
@@ -106,6 +108,7 @@ function tokenizeStanza(stanza) {
 function tokenizePoem (file) {
   const poemText = fs.readFileSync(file, 'utf8');
   const linesText = poemText.split(/\n/)
+  let options = {indent: '  ', inlineCharacterLimit: 80};
   console.log(linesText);
   if ( linesText.length > 3 ) {
     let titleText = linesText.shift(),
@@ -114,12 +117,15 @@ function tokenizePoem (file) {
     
     let title = tokenizeLine(titleText, "h1"),
         author = tokenizeLine(authorText, "h2"),
-        stanzas = createStanzas(linesText);
-    return {title: title, author: author, stanzas: stanzas}
+        stanzas = createStanzas(linesText),
+        fullPoem = {title: title, author: author, stanzas: stanzas}
+    //return  stringify(tokenizePoem(poemFile),options).replace(/meta: ''/g, "meta: ``")
+    return fullPoem
   } else {
     return null
   }
 }
+
 
 async function rewriteHtmlFile (poemName) {
   let html = await fsp.readFile("poem.html", 'utf-8'),
@@ -133,10 +139,11 @@ async function rewriteHtmlFile (poemName) {
 // write to poem.js
 let options = {indent: '  ', inlineCharacterLimit: 80},
     parsedPoem = stringify(tokenizePoem(poemFile),options).replace(/meta: ''/g, "meta: ``")
-if (fs.existsSync(poemFile)) {
+if (fs.existsSync(poemFile) && baseName) {
   fs.writeFileSync(outFile,'let poem=' +  parsedPoem);
   //rewriteHtmlFile(baseName)
 } else {
   console.log(`unable to find poem file ${poemFile ? poemFile : "(you didn't provide a poem file)"}`);
 }
+
 
