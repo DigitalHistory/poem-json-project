@@ -121,7 +121,7 @@ let poem = {
             {type: 'word', content: 'silent', class: '', meta: ``},
             {type: 'word', content: 'hut', class: '', meta: ``},
             {type: 'punctuation', content: ',', class: '', meta: ``},
-            {type: 'word', content: 'sorrow', class: '', meta: ``},
+            {type: 'word', content: 'sorrow', class: 'sorrow', meta: ``},
             {type: 'punctuation', content: ',', class: '', meta: ``}
           ]
         },
@@ -135,7 +135,7 @@ let poem = {
             {type: 'punctuation', content: ',', class: '', meta: ``},
             {type: 'word', content: 'a', class: '', meta: ``},
             {type: 'word', content: 'soul', class: '', meta: ``},
-            {type: 'word', content: 'crying', class: '', meta: ``},
+            {type: 'word', content: 'crying', class: 'sorrow', meta: ``},
             {type: 'word', content: 'in', class: '', meta: ``},
             {type: 'word', content: 'the', class: '', meta: ``},
             {type: 'word', content: 'dark', class: '', meta: ``},
@@ -198,7 +198,7 @@ let poem = {
             {type: 'word', content: 'look', class: '', meta: ``},
             {type: 'word', content: 'at', class: '', meta: ``},
             {type: 'word', content: 'the', class: '', meta: ``},
-            {type: 'word', content: 'mourning', class: '', meta: ``},
+            {type: 'word', content: 'mourning', class: 'sorrow', meta: ``},
             {type: 'word', content: 'processions', class: '', meta: ``},
             {type: 'punctuation', content: ',', class: '', meta: ``}
           ]
@@ -233,7 +233,7 @@ let poem = {
             {type: 'word', content: 'a', class: '', meta: ``},
             {type: 'word', content: 'corpse', class: '', meta: ``},
             {type: 'punctuation', content: ',', class: '', meta: ``},
-            {type: 'word', content: 'mourned', class: '', meta: ``}
+            {type: 'word', content: 'mourned', class: 'sorrow', meta: ``}
           ]
         },
         {
@@ -243,7 +243,7 @@ let poem = {
           content: [
             {type: 'word', content: 'without', class: '', meta: ``},
             {type: 'word', content: 'a', class: '', meta: ``},
-            {type: 'word', content: 'eulogy', class: '', meta: ``},
+            {type: 'word', content: 'eulogy', class: 'sorrow', meta: ``},
             {type: 'word', content: 'or', class: '', meta: ``},
             {type: 'word', content: 'a', class: '', meta: ``},
             {type: 'word', content: 'moment', class: '', meta: ``},
@@ -308,7 +308,7 @@ let poem = {
             {type: 'word', content: 'the', class: '', meta: ``},
             {type: 'word', content: 'gravedigger', class: '', meta: ``},
             {type: 'word', content: 'has', class: '', meta: ``},
-            {type: 'word', content: 'succumbed', class: '', meta: ``},
+            {type: 'word', content: 'succumbed', class: 'sorrow', meta: ``},
             {type: 'punctuation', content: ',', class: '', meta: ``}
           ]
         },
@@ -332,7 +332,7 @@ let poem = {
             {type: 'word', content: 'and', class: '', meta: ``},
             {type: 'word', content: 'who', class: '', meta: ``},
             {type: 'word', content: 'will', class: '', meta: ``},
-            {type: 'word', content: 'eulogize', class: '', meta: ``},
+            {type: 'word', content: 'eulogize', class: 'sorrow', meta: ``},
             {type: 'word', content: 'the', class: '', meta: ``},
             {type: 'word', content: 'dead?', class: '', meta: ``}
           ]
@@ -354,7 +354,7 @@ let poem = {
             {type: 'word', content: 'my', class: '', meta: ``},
             {type: 'word', content: 'heart', class: '', meta: ``},
             {type: 'word', content: 'is', class: '', meta: ``},
-            {type: 'word', content: 'torn', class: '', meta: ``},
+            {type: 'word', content: 'torn', class: 'sorrow', meta: ``},
             {type: 'word', content: 'by', class: '', meta: ``},
             {type: 'word', content: 'the', class: '', meta: ``},
             {type: 'word', content: 'ravages', class: '', meta: ``},

@@ -20,6 +20,10 @@ word {
     display: inline;            /*Important!! Don't display on own line*/
 }
 
+word.sorrow {
+    color: grey;
+    opacity: 0.4;
+}
 /* consider whether you want to color/display your punctuation */
 punctuation {
     /* visibility: hidden; */
@@ -64,12 +68,6 @@ line.show {
 
 }
 
-line {
-    /* transform:rotateY(180deg); */
-    transform: scaleX
-    unicode-bidi:bidi-override;
-    direction:rtl;
-}
 /* line * {
     float: right;
 
