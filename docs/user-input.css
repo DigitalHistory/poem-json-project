@@ -34,6 +34,7 @@ main header button {
 main pre, main textarea {
     border: 1px solid black;
     margin-top: 0px;
+    overflow: auto;
 }
 
 
