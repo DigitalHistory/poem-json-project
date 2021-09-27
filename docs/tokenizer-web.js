@@ -267,7 +267,7 @@ function createStanzas(linesText) {
   for (let i = 0; i < linesText.length; i++) {
     //console.log(i, linesText[i], linesText[i].length);
     //console.log(lastIndex);
-    if (linesText[i].length <= 0) {
+    if (linesText[i].length <= 0 || i + 1 == linesText.length) {
       const newStanza = linesText.slice(lastIndex , i)
       //console.log("stanza >o ?", newStanza);
       if (newStanza.length > 0)  {
