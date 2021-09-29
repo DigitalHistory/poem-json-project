@@ -350,10 +350,18 @@ function tokenizePoem (el) {
 function displayPoemJs (el) {
   let value = tokenizePoem(el),
       code = document.querySelector("pre#jsonoutput code"),
+      hiddenarea = document.querySelector("#tocopy"),
       parsed =  stringifyObject(value, {indent: '  ', inlineCharacterLimit: 80}).replace(/meta: ''/g, "meta: ``");// stringify(value, {maxLength: 80, indent: 2});
   console.log(value);
-  value ?  code.textContent = `let poem = ${parsed};` : code.textContent = `Please enter a full poem or parsing cannot succeed.` 
-  
+  if (value) {
+    code.textContent = `let poem = ${parsed};`
+    hiddenarea.textContent = `let poem = ${parsed};`
+    hiddenarea.select();
+    document.execCommand("copy");
+
+  } else {
+    code.textContent = `Please enter a full poem or parsing cannot succeed.` 
+  }
 }
 // const poemStanzas = createStanzas(poemFile)
 
