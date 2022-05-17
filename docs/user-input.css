@@ -6,9 +6,11 @@ main {
     display: grid;
     grid-template-areas: "top top" "in out";
     height: 100vh;
-    grid-template-rows:  20vh 1fr;
+    grid-template-rows:  25vh 1fr;
     grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
+    width: 90vw;
+    margin: auto;
 }
 
 
@@ -16,13 +18,17 @@ main header {
     grid-area: top;
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    //overflow: auto;
 }
 
 main header p {
     font-size: 1.2em;
 }
 
+main header nav {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
 main header button {
     font-size: 1.6em;
     background-color: #559955;
@@ -31,6 +37,9 @@ main header button {
     border: 3px solid black;
 }
 
+#copy {
+    background-color: blue;
+}
 main pre, main textarea {
     border: 1px solid black;
     margin-top: 0px;

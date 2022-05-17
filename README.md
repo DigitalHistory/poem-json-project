@@ -1,6 +1,6 @@
-# Poetry project for students on DH235
+# Poetry project for students on DHU235
 
-Repo contains both student and instructor files for Assignment 1 of DH235.
+Repo contains both student and instructor files for Assignment 1 of DHU235.
 
 ## For Instructors
 
