@@ -39,6 +39,12 @@
              hidden.select();
              document.execCommand("copy");
          }
+         const btn_copy = document.getElementById('copy')
+         const txt_data = document.getElementById('tocopy')
+         btn_copy.onclick = () => {
+  const value = txt_data.value
+  navigator.clipboard.writeText(value)
+}
         </script>
     </body>
 </html>
