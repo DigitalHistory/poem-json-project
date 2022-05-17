@@ -7,19 +7,22 @@
     </head>
     <body>
         <main>
-            <header>
-                <button onClick="parseAndHighlight()">Parse Input</button>
-                <p>Paste the text of your poem into the left side, then click the button at the top.
-                    The first line of your text should be the title of the poem. The second line should contain the author's name.
-                    The third line should be blank, and the rest of the text should be arranged in stanzas (if your poem has them),
-                    separated by blank lines.
-                    When you're done, copy the text and save it as "poem.js" in the root directory of your</p> project
+          <header>
+            <nav>
+              <button onClick="parseAndHighlight()">Parse Input</button>
+              <button id='copy'>copy</button>
+            </nav>
+            <p>Paste the text of your poem into the left side, then click the button at the top.
+              The first line of your text should be the title of the poem. The second line should contain the author's name.
+              The third line should be blank, and the rest of the text should be arranged in stanzas (if your poem has them),
+              separated by blank lines. Make sure the lines are <strong>completely</strong> blank!
+              When you're done, copy the text and save it as "poem.js" in the root directory of your project</p>
                 
-            </header>
-            <textarea id="userinput" name=""></textarea>
-            <pre id="jsonoutput">
-                <code class="lang-js"></code>
-            </pre>
+          </header>
+          <textarea id="userinput" name=""></textarea>
+          <pre id="jsonoutput">
+            <code class="lang-js"></code>
+          </pre>
             
         </main>
         <textarea id="tocopy" style="display:none;"></textarea>
