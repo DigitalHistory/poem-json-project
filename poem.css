@@ -45,10 +45,10 @@ indent {
 /* add a counter to each line.  if you don't like it, delete the `content` line */
 line::before {
     counter-increment: poem;
-    /* background-color: magenta; */
-    /* content: counter(poem); */
+    content: counter(poem);
     width: 2em;
     background-color: #DDD;
+    /* background-color: magenta; */
 }
 
 /* --------- class rules ------------ */
@@ -73,6 +73,7 @@ line.show {
 
 } */
 /* 
+
 .time {display: block;
     font-weight: bold;}
 .hide {visibility: hidden;}
