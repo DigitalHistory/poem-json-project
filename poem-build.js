@@ -1,3 +1,6 @@
+const replacements = [
+  //["Journey", "Trip"]
+]
 
 function addTooltip (text, target) {
   target.classList.add("tooltip-reference");
@@ -6,22 +9,29 @@ function addTooltip (text, target) {
   target.appendChild(tip)
 }
 
+function replaceContentMaybe(target) {
+  for (pair of replacements) {
+    if (target == pair[0]) {return pair[1]}
+  }
+  return target 
+}
 function parseInlineCollection (collection,target) {
   console.log(collection);
   if (Array.isArray (collection)) {
     collection.forEach (e =>parseInlineCollection(e, target))
   } else {
-  const {content, meta, type } = collection
-  let newInline = document.createElement(type);
-  collection.class && newInline.classList.add(...collection.class.split(" "));
-  meta && addTooltip (meta, newInline);
-  if (Array.isArray(content)) {
-    content.forEach (e => parseInlineCollection(e, newInline))
+    let {content, meta, element } = collection
+    content = replaceContentMaybe(content)
+    let newInline = document.createElement(element);
+    collection.class && newInline.classList.add(...collection.class.split(" "));
+    if (Array.isArray(content)) {
+      content.forEach (e => parseInlineCollection(e, newInline))
     
-  } else {
-    newInline.textContent = content;
-  }
-  target.appendChild(newInline);
+    } else {
+      newInline.textContent = content;
+    }
+    target.appendChild(newInline);
+    meta && addTooltip(meta, newInline);
   }
 }
 
