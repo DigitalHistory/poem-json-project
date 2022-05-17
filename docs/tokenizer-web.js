@@ -297,19 +297,19 @@ function tokenizeLine (l, tag="line") {
   // console.log(raw);
   for (let e of raw) {
     if (typeof(e) !== 'undefined') {
-      let newel = {type: "word", content: e, class: "", meta: ""}
+      let newel = {element: "word", content: e, class: "", meta: ""}
       if (e.match(/^\s/)) {
-        if (e.length > 1) {a.push({...newel, type: "indent"})}
-        //a.push({type: "space", content: e})
+        if (e.length > 1) {a.push({...newel, element: "indent"})}
+        //a.push({element: "space", content: e})
       } else if (e.match(/^(\,|\;|\.|\!)/)) {
         //console.log(e, "e is pucntuation!");
-        a.push({...newel, type: "punctuation"})
+        a.push({...newel, element: "punctuation"})
       } else if (e.length > 0){
         a.push(newel)
       }
     }
   }
-  return {type: tag, class:"", original: l, content: a }
+  return {element: tag, class:"", original: l , meta:"", content: a }
 }
 
 
@@ -325,7 +325,7 @@ function tokenizeStanza(stanza) {
     //console.log(a);
     lines.push(tokenizeLine(l))
   }
-  return {type: "stanza", class:"", content: lines}
+  return {element: "stanza", class:"", meta:"", content: lines}
 }
 
 function tokenizePoem (el) {
